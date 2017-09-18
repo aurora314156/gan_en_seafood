@@ -1,1 +1,1 @@
-# gan_en_seafood
+# gan_en_seafood Project for homework
