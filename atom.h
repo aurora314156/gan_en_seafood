@@ -14,8 +14,8 @@ class Variable;
 class Atom {
 
 public:
-  Atom (string s):symbol(s) {}
-  bool operator ==(Atom a) {return symbol == a.symbol;}
+  Atom (string s):symbol(s),value(s) {}
+  
   string symbol;
   string value;
   bool assignable = true;

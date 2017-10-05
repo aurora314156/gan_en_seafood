@@ -15,7 +15,7 @@ class Variable{
 public:
 
     Variable(string s):symbol(s){}
-    string symbol;
+    string symbol="";
     string value="";
     bool assignable = true;
     string getvalue(){ return value; }

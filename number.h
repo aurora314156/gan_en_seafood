@@ -16,23 +16,22 @@ class Number{
 public:
  
   Number(int s){
-    num = s;
-    symbol = to_string(s);
+    num = to_string(s);
+    sym = "number";
   }
-  string value;
   bool assignable = true;
 
-  bool operator ==(Number number) {return num == number.num;}
-
+  
+  bool match(Number n);
   bool match(Atom atom);
   bool match(Variable &v);
 
-  int getnumber(){return num;}
-  string getsymbol(){return symbol;}
+  string value(){return num;}
+  string symbol(){return sym;}
 
 
-  string symbol;
-  int num;
+  string sym;
+  string num;
   
 };
 

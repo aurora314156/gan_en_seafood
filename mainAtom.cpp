@@ -9,16 +9,14 @@ bool Atom::match(Number n){
 }
 bool Atom::match(Variable &v){
     
-    if(v.value=="")
+    if(v.symbol=="X")
     {
-        
-      v.value = symbol;
+      v.symbol = symbol;
+      v.value = value;
       
-      assignable = false;
-      return true; 
     }
-    else if(v.value!=""){
-        if(v.value == symbol)
+    else if(v.symbol!="X"){
+        if(v.value == value)
             return true;
         else
             return false;

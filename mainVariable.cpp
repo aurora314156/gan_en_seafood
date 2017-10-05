@@ -5,15 +5,15 @@
 
 bool Variable::match(Atom atom){
 
-    if(value=="")
-    {   
-      value = atom.symbol;
-      
-      assignable = false;
-      return true; 
+    if(symbol=="X")
+    {
+        symbol = atom.symbol;
+      value = atom.value;
+      return true;
+   
     }
-    else if(value!=""){
-        if(value == atom.symbol)
+    else if(symbol!="X"){
+        if(value == atom.value)
             return true;
         else
             return false;
@@ -21,15 +21,14 @@ bool Variable::match(Atom atom){
 }
 bool Variable::match(Number n){
 
-    if(value=="")
+    if(symbol=="X")
     {
-      value = n.symbol;
-      
-      assignable = false;
-      return true; 
+      value = n.num;
+      symbol = n.sym;
+     
     }
-    else if(value!=""){
-        if(value == n.symbol)
+    else if(symbol!="X"){
+        if(value == n.num)
             return true;
         else
             return false;

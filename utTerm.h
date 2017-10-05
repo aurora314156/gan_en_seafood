@@ -9,27 +9,27 @@
 //test Number.value()
 TEST (Number,ctor){
     Number number(25);
-    ASSERT_EQ(25,number.getnumber());
+    ASSERT_EQ("25",number.value());
     
 }
 //test Number.symbol()
 TEST (Number, symbol) {
     Number number(25);
-    ASSERT_EQ("25",number.getsymbol());
+    ASSERT_EQ("number",number.symbol());
 }
 //?- 25=25.
 //true.
 TEST (Number, matchSuccess) {
    Number number1(25);
    Number number2(25);
-   ASSERT_EQ(number1.getnumber(),number2.getnumber());
+   EXPECT_TRUE(number1.match(number2));
 }
 //?- 25=0.
 //false.
 TEST (Number, matchFailureDiffValue) {
   Number number1(25);
   Number number2(0);
-  EXPECT_FALSE(number1== number2);
+  EXPECT_FALSE(number1.match(number2));
 }
 //?- 25=tom.
 //false.
@@ -52,7 +52,7 @@ TEST (Number, matchSuccessToVar) {
    Number number(25);
    Variable X("X");
    EXPECT_TRUE(number.match(X));
-  // EXPECT_TRUE(number.match(X));
+  
 }
 
 
@@ -72,6 +72,7 @@ TEST (Atom, matchSuccessToVarInstantedToDiffConstant) {
   
     Atom tom("tom");
     Variable X("X");
+   
     EXPECT_TRUE(X.match(tom));
     EXPECT_EQ("tom",X.value);
 }
