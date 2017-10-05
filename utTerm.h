@@ -15,6 +15,7 @@ TEST (Number,ctor){
 TEST (Number, symbol) {
     Number number(25);
     ASSERT_EQ("25",number.value());
+    
 }
 //?- 25=25.
 //true.

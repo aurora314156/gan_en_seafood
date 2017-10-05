@@ -17,7 +17,7 @@ public:
  
   Number(int s){
     num = to_string(s);
-    sym = "number";
+    sym = to_string(s);
   }
   
 
