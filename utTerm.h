@@ -10,20 +10,17 @@
 TEST (Number,ctor){
     Number number(25);
     ASSERT_EQ(number.value(),"25");
-    
 }
 //test Number.symbol()
 TEST (Number, symbol) {
     Number number(25);
-    ASSERT_EQ(number.value(),"25");
+    ASSERT_EQ("25",number.value());
 }
 //?- 25=25.
 //true.
 TEST (Number, matchSuccess) {
    Number number1(25);
    Number number2(25);
-  // EXPECT_EQ("123",number1.num);
-   //EXPECT_EQ("123",number2.num);
    EXPECT_TRUE(number1.match(number2));
 }
 //?- 25=0.
@@ -56,8 +53,6 @@ TEST (Number, matchSuccessToVar) {
    EXPECT_TRUE(number.match(X));
   
 }
-
-
 // ?- tom = X.
 // X = tom.
 TEST (Atom, matchSuccessToVar) {
@@ -67,7 +62,6 @@ TEST (Atom, matchSuccessToVar) {
     
     EXPECT_TRUE(tom.match(X));
 }
-
 // ?- X=tom, tom=X.
 // true
 TEST (Atom, matchSuccessToVarInstantedToDiffConstant) {
@@ -89,7 +83,6 @@ TEST (Atom, matchFailureToVarInstantedToDiffConstant) {
     EXPECT_TRUE(X.match(tom1));
     EXPECT_FALSE(X.match(tom2));
 }
-
 // ?- X = 5.
 // X = 5.
 TEST (Var, matchSuccessToNumber) {
@@ -98,7 +91,6 @@ TEST (Var, matchSuccessToNumber) {
    X.match(number);
    EXPECT_TRUE(X.match(number));
 }
-
 // ?- X=25, X= 100.
 // false.
 TEST (Var, matchFailureToTwoDiffNumbers) {
@@ -108,7 +100,6 @@ TEST (Var, matchFailureToTwoDiffNumbers) {
    EXPECT_TRUE(X.match(number1));
    EXPECT_FALSE(X.match(number2));
 }
-
 // ?- X=tom, X= 25.
 // false.
 TEST (Var, matchSuccessToAtomThenFailureToNumber) {
@@ -127,7 +118,6 @@ TEST (Var, matchSuccessToAtomThenFailureToNumber2) {
    
    EXPECT_TRUE(tom.match(X));
    EXPECT_FALSE(number.match(X));
-   
 }
 //?- X=tom, X=tom.
 //true.
