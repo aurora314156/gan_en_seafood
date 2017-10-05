@@ -9,19 +9,21 @@
 //test Number.value()
 TEST (Number,ctor){
     Number number(25);
-    ASSERT_EQ("25",number.value());
+    ASSERT_EQ(number.value(),"25");
     
 }
 //test Number.symbol()
 TEST (Number, symbol) {
     Number number(25);
-    ASSERT_EQ("number",number.symbol());
+    ASSERT_EQ(number.symbol(),"number");
 }
 //?- 25=25.
 //true.
 TEST (Number, matchSuccess) {
    Number number1(25);
    Number number2(25);
+  // EXPECT_EQ("123",number1.num);
+   //EXPECT_EQ("123",number2.num);
    EXPECT_TRUE(number1.match(number2));
 }
 //?- 25=0.

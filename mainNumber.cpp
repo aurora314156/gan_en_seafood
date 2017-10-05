@@ -1,4 +1,6 @@
-#include<string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "number.h"
 #include "atom.h"
 #include "variable.h"
@@ -7,9 +9,9 @@
 bool Number::match(Number n)
 {
   if(n.num == num)
-  return true;
+      return true;
   else
-  return false;
+      return false;
 }
 bool Number::match(Atom atom)
 {
