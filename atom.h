@@ -5,6 +5,7 @@
 #include "variable.h"
 #include "number.h"
 
+
 using namespace std;
 
 class Number;

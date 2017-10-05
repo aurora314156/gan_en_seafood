@@ -62,8 +62,8 @@ TEST (Atom, matchSuccessToVar) {
   
     Atom tom("tom");
     Variable X("X");
-    tom.match(X);
-    EXPECT_EQ("tom",X.value);
+    
+    EXPECT_TRUE(tom.match(X));
 }
 
 // ?- X=tom, tom=X.
@@ -74,7 +74,7 @@ TEST (Atom, matchSuccessToVarInstantedToDiffConstant) {
     Variable X("X");
    
     EXPECT_TRUE(X.match(tom));
-    EXPECT_EQ("tom",X.value);
+    EXPECT_TRUE(tom.match(X));
 }
 
 // ?- X=jerry, tom=X.
