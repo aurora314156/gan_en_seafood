@@ -16,9 +16,9 @@ public:
 
     Variable(string s):symbol(s){}
     string symbol="";
-    string value="";
-    bool assignable = true;
-    string getvalue(){ return value; }
+    string num="";
+    
+    string value(){ return num; }
     bool match(Atom atom);
     bool match(Number n);
     

@@ -8,12 +8,12 @@ bool Variable::match(Atom atom){
     if(symbol=="X")
     {
         symbol = atom.symbol;
-      value = atom.value;
+      num = atom.value;
       return true;
    
     }
     else if(symbol!="X"){
-        if(value == atom.value)
+        if(num == atom.value)
             return true;
         else
             return false;
@@ -23,12 +23,12 @@ bool Variable::match(Number n){
 
     if(symbol=="X")
     {
-      value = n.num;
+      num = n.num;
       symbol = n.sym;
      
     }
     else if(symbol!="X"){
-        if(value == n.num)
+        if(num == n.num)
             return true;
         else
             return false;

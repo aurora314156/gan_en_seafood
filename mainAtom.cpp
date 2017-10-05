@@ -12,11 +12,11 @@ bool Atom::match(Variable &v){
     if(v.symbol=="X")
     {
       v.symbol = symbol;
-      v.value = value;
+      v.num = value;
       
     }
     else if(v.symbol!="X"){
-        if(v.value == value)
+        if(v.num == value)
             return true;
         else
             return false;

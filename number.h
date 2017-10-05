@@ -19,7 +19,7 @@ public:
     num = to_string(s);
     sym = "number";
   }
-  bool assignable = true;
+  
 
   
   bool match(Number n);

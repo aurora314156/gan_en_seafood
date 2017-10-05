@@ -18,7 +18,7 @@ public:
   
   string symbol;
   string value;
-  bool assignable = true;
+  
   
   bool match(Number n);
   bool match(Variable &v);

@@ -17,14 +17,14 @@ bool Number::match(Atom atom)
 }
 bool Number::match(Variable &v)
 {
-  if(v.value=="")
+  if(v.num=="")
   {
       
-    v.value = num;
+    v.num = num;
     v.symbol = sym;
   }
-  else if(v.value!=""){
-      if(v.value == sym)
+  else if(v.num!=""){
+      if(v.num == num)
           return true;
       else
           return false;
