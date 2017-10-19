@@ -1,8 +1,11 @@
-#include <gtest/gtest.h>
-#include "utTerm.h"
+#include "term.h"
 
-int main( int argc , char **argv )
-{
-    testing :: InitGoogleTest( &argc , argv ) ;
-    return RUN_ALL_TESTS( ) ;
+
+string Term::value() const{
+    return symbol();
+}
+
+bool Term::match(Term &term){
+
+    return symbol() == term.symbol();
 }

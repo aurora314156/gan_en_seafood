@@ -1,35 +1,26 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "number.h"
-#include "atom.h"
-#include "variable.h"
+#include <string>
 #include <iostream>
 
-bool Number::match(Number n)
-{
-  if(n.num == num)
-      return true;
-  else
-      return false;
-}
-bool Number::match(Atom atom)
-{
-  return false;
-}
-bool Number::match(Variable &v)
-{
-  if(v.num=="")
-  {
-      
-    v.num = num;
-    v.symbol = sym;
-  }
-  else if(v.num!=""){
-      if(v.num == num)
-          return true;
-      else
-          return false;
-  }
+Number::Number(double s ){
+
+    string num = to_string(s);
+    string temp;
+    int end = 0;
+
+    for(end =num.size()-1;end>0;end--)
+    if(num[end]!='0')break;
+
+    for(int i =0;i<end+1;++i)
+    temp+=num[i];
+    
+    _symbol = temp;
+    _value = temp;
 }
 
+string Number::symbol() const{
+    return _symbol;
+}
+string Number::value() const{
+    return _value;
+}

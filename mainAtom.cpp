@@ -1,24 +1,6 @@
-
-#include <iostream>
-#include "number.h"
 #include "atom.h"
-#include "variable.h"
 
-bool Atom::match(Number n){
-    return false;
-}
-bool Atom::match(Variable &v){
-    
-    if(v.symbol=="X")
-    {
-      v.symbol = symbol;
-      v.num = value;
-      
-    }
-    else if(v.symbol!="X"){
-        if(v.num == value)
-            return true;
-        else
-            return false;
-    }
-}
+Atom :: Atom (string s) : _symbol (s),_value(s) {}
+
+string Atom::symbol () const { return _symbol;}
+string Atom::value () const { return _value;}

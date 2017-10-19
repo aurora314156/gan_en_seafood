@@ -3,35 +3,21 @@
 
 
 #include <string>
-#include "atom.h"
-#include "variable.h"
-
+#include "term.h"
 
 using namespace std;
 
-class Atom;
-class Variable;
+class Number: public Term{
 
-class Number{
 public:
  
-  Number(int s){
-    num = to_string(s);
-    sym = to_string(s);
-  }
-  
+  Number(double s);
+    
+  string symbol()const;
+  string value() const;
 
-  
-  bool match(Number n);
-  bool match(Atom atom);
-  bool match(Variable &v);
-
-  string value(){return num;}
-  string symbol(){return sym;}
-
-
-  string sym;
-  string num;
+  string _symbol;
+  string _value;
   
 };
 

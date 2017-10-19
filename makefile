@@ -1,25 +1,29 @@
-all: hw2
+all: hw3
 
-
-hw2: mainTerm.o mainNumber.o mainVariable.o mainAtom.o
+hw3: main.o mainStruct.o mainTerm.o mainAtom.o mainNumber.o mainVariable.o
 ifeq (${OS}, Windows_NT)
-	g++ -o hw2 mainTerm.o mainNumber.o mainVariable.o mainAtom.o -lgtest
+	g++ -o hw3 main.o mainStruct.o mainTerm.o mainAtom.o mainNumber.o mainVariable.o -lgtest
 else
-	g++ -o hw2 mainTerm.o mainNumber.o mainVariable.o mainAtom.o -lgtest -lpthread
+	g++ -o hw3 main.o mainStruct.o mainTerm.o mainAtom.o mainNumber.o mainVariable.o -lgtest -lpthread
 endif
 
-mainTerm.o: mainTerm.cpp utTerm.h 
+
+main.o: main.cpp utVariable.h utStruct.h
+	g++ -std=gnu++0x -c main.cpp
+mainStruct.o: mainStruct.cpp struct.h
+	g++ -std=gnu++0x -c mainStruct.cpp
+mainTerm.o: mainTerm.cpp term.h
 	g++ -std=gnu++0x -c mainTerm.cpp
-mainNumber.o: mainNumber.cpp atom.h number.h variable.h
-	g++ -std=gnu++0x -c mainNumber.cpp
-mainVariable.o: mainVariable.cpp atom.h number.h variable.h
+mainVariable.o: mainVariable.cpp variable.h
 	g++ -std=gnu++0x -c mainVariable.cpp 
-mainAtom.o: mainAtom.cpp atom.h number.h variable.h
-	g++ -std=gnu++0x -c mainAtom.cpp 
-	
+mainNumber.o: mainNumber.cpp number.h
+	g++ -std=gnu++0x -c mainNumber.cpp 
+mainAtom.o: mainAtom.cpp atom.h
+	g++ -std=gnu++0x -c mainAtom.cpp
+
 clean:
 ifeq (${OS}, Windows_NT)
 	del *.o *.exe
 else
-	rm -f *.o hw2
+	rm -f *.o hw3
 endif

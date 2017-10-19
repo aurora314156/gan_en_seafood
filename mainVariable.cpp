@@ -1,36 +1,25 @@
 #include "number.h"
 #include "atom.h"
 #include "variable.h"
+#include "struct.h"
 
 
-bool Variable::match(Atom atom){
+bool Variable::match(Term &term){
 
-    if(symbol=="X")
+    if(_sign || _value==term.symbol()){
+        //v.push_back(&term);
+        _sign = false;
+        _value = term.symbol();
+        return true;
+    }
+    /*if(v.size()!=0)
     {
-        symbol = atom.symbol;
-      num = atom.value;
-      return true;
-   
-    }
-    else if(symbol!="X"){
-        if(num == atom.value)
-            return true;
-        else
-            return false;
-    }
+        v[0]->symbol() = term.symbol();
+        return true;
+    }*/
+    return false;
 }
-bool Variable::match(Number n){
 
-    if(symbol=="X")
-    {
-      num = n.num;
-      symbol = n.sym;
-     
-    }
-    else if(symbol!="X"){
-        if(num == n.num)
-            return true;
-        else
-            return false;
-    }
-}
+
+//x=y,x=tom
+//y=tom

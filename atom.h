@@ -2,27 +2,21 @@
 #define ATOM_H
 
 #include <string>
-#include "variable.h"
-#include "number.h"
-
+#include "term.h"
 
 using namespace std;
 
-class Number;
-class Variable;
-
-class Atom {
+class Atom : public Term{
 
 public:
-  Atom (string s):symbol(s),value(s) {}
-  
-  string symbol;
-  string value;
-  
-  
-  bool match(Number n);
-  bool match(Variable &v);
+
+    Atom (string s);
+
+    string symbol () const;
+    string value ()const;
+
+    string _symbol;
+    string _value;
 
 };
-
 #endif

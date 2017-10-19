@@ -2,27 +2,33 @@
 #define VARIABLE_H
 
 #include <string>
+#include <vector>
+#include "term.h"
 #include "atom.h"
 #include "number.h"
 
-using std::string;
+using namespace std;
 
 class Number;
 class Atom;
 
-class Variable{
+class Variable: public Term{
 
-public:
-
-    Variable(string s):symbol(s){}
-    string symbol="";
-    string num="";
+    public:
+    Variable(string s):_symbol(s),_value(s){}
     
-    string value(){ return num; }
-    bool match(Atom atom);
-    bool match(Number n);
-    
+    string  value()const {
+         return _value; 
+    }
+    string  symbol()const {
+        return _symbol;
+    }
+    bool match(Term &term);
   
+    string _symbol;
+    string _value;
+    vector<Term *> v;
+    bool _sign = true;
+    
 };
-
 #endif
