@@ -6,29 +6,33 @@
 #include "term.h"
 #include "atom.h"
 #include "number.h"
+#include "struct.h"
 
 using namespace std;
 
-class Number;
-class Atom;
 
 class Variable: public Term{
 
     public:
     Variable(string s):_symbol(s),_value(s){}
     
-    string  value()const {
-         return _value; 
+    string  value() const {
+        if(str!=0)
+            return str->value();
+        else
+            return _value; 
     }
-    string  symbol()const {
+    string  symbol() const {
         return _symbol;
     }
     bool match(Term &term);
   
     string _symbol;
     string _value;
-    vector<Term *> v;
     bool _sign = true;
+    vector<Variable *> vec;
+    Struct* str=0;
+    
     
 };
 #endif

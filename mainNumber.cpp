@@ -1,26 +1,26 @@
 #include "number.h"
+#include "variable.h"
 #include <string>
 #include <iostream>
+#include <sstream>
 
 Number::Number(double s ){
 
-    string num = to_string(s);
-    string temp;
-    int end = 0;
-
-    for(end =num.size()-1;end>0;end--)
-    if(num[end]!='0')break;
-
-    for(int i =0;i<end+1;++i)
-    temp+=num[i];
+    std::stringstream st;
     
-    _symbol = temp;
-    _value = temp;
+    st<<s;
+
+    _symbol = st.str();
+    _value = st.str();
+
 }
 
-string Number::symbol() const{
-    return _symbol;
-}
-string Number::value() const{
-    return _value;
+bool Number::match(Term &term){
+
+	Variable* v = dynamic_cast<Variable*> (&term);
+    
+    if(v)
+        return v->match(*this);
+	else
+        return _symbol == term.symbol();
 }

@@ -32,45 +32,71 @@ TEST (Variable , haveValue){
 // X=2.7182
 TEST(Variable , numE_to_varX){
   Variable X("X");
-  Number n(2.7101);
-  ASSERT_TRUE(X.match(n));
+  Number n(2.7182);
+  X.match(n);
+  ASSERT_EQ("2.7182",X.value());
 }
 
 // ?- X=Y, X=1.
 // Y=1
-/*
+
 TEST (Variable, varY_to_varX_and_num1_to_varX) {
   Variable X("X");
   Variable Y("Y");
-  Number number("1");
-  X.match("Y");
-  ASSERT_EQ("Z",X.symbol());
-}*/
+  Number number(1);
+  X.match(Y);
+  ASSERT_EQ("Y",X.value());
+  X.match(number);
+  ASSERT_EQ("1",X.value());
+}
   
 // ?- X=Y, Y=1.
 // X=1
 TEST (Variable, varY_to_varX_and_num1_to_varY) {
-  
+  Variable X("X");
+  Variable Y("Y");
+  Number number(1);
+  X.match(Y);
+  Y.match(number);
+  ASSERT_EQ("1",X.value());
 }
 
 // ?- X=X, X=1.
 // X=1
 TEST (Variable, varX_match_varX_and_num1_to_varX) {
-
+  Variable X("X");
+  Number number(1);
+  X.match(X);
+  X.match(number);
+  ASSERT_EQ("1",X.value());
 }
 
 // ?- Y=1, X=Y.
 // X=1
 TEST (Variable, num1_to_varY_and_varX_match_varY) {
-
+  Variable X("X");
+  Variable Y("Y");
+  Number number(1);
+  Y.match(number);
+  X.match(Y);
+  ASSERT_EQ("1",X.value());
 }
 
 // ?- X=Y, Y=Z, Z=1
 // X=1, Y=1, Z=1
 TEST (Variable, num1_to_varZ_to_varY_to_varX) {
-
+  Variable X("X");
+  Variable Y("Y");
+  Variable Z("Z");
+  Number number (1);
+  X.match(Y);
+  Y.match(Z);
+  Z.match(number);
+  ASSERT_EQ("1",X.value());
+  ASSERT_EQ("1",Y.value());
+  ASSERT_EQ("1",Z.value());
 }
-
+/*
 // ?- X=Y, X=Z, Z=1
 // X=1, Y=1, Z=1
 TEST (Variable, num1_to_varZ_to_varX_and_varY_to_varX) {
@@ -94,6 +120,6 @@ TEST (Variable, Struct1) {
 // And #value() of Y should return "s(teddy)"
 TEST (Variable, Struct2) {
   
-}
+}*/
 
 #endif

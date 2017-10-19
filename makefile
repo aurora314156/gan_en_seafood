@@ -21,6 +21,7 @@ mainNumber.o: mainNumber.cpp number.h
 mainAtom.o: mainAtom.cpp atom.h
 	g++ -std=gnu++0x -c mainAtom.cpp
 
+
 clean:
 ifeq (${OS}, Windows_NT)
 	del *.o *.exe

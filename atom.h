@@ -12,8 +12,15 @@ public:
 
     Atom (string s);
 
-    string symbol () const;
-    string value ()const;
+    string symbol () const{
+        return _symbol;
+
+    };
+    string value ()const{
+        return _value;
+    };
+
+    bool match ( Term &term );
 
     string _symbol;
     string _value;

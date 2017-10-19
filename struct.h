@@ -10,6 +10,7 @@
 class Struct: public Term{
 
 public:
+  
   Struct(Atom const & name, std::vector<Term *> args);
 
   Term * args(int index) {
@@ -36,9 +37,9 @@ public:
   string symbol()const;
   string value()const;
   
-private:
-  Atom _name;
-  std::vector<Term *> _args;
+  private:
+    Atom _name;
+    std::vector<Term *> _args;
 };
 
 #endif
