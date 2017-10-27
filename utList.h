@@ -157,68 +157,88 @@ TEST(List, matchToVarToAtominListShouldSucceed) {
 // Y = [496, alan_mathison_turing, terence_tao],
 // X = alan_mathison_turing.
 TEST(List, matchVarinListToAtomShouldSucceed) {
- /* Variable Y("Y"),X("X");
-  Number num(496);
-  Atom t("terence_tao"),a("alan_mathison_turing");
-  vector<Term *> args = {&num ,&X, &t};
-  List L(args);
-  Y.match(L);
-  X.match(a);
-  EXPECT_EQ("alan_mathison_turing",X.value()); // ok
+  Number num1(496);
+  Variable X("X");
+  Variable Y("Y");
+  Atom atom1("terence_tao");
+  Atom atom2("alan_mathison_turing");
+  X.match(atom2);
+  vector<Term *> v1 = {&num1, &X, &atom1};
+  List list1(v1);
+  Y.match(list1);
   EXPECT_EQ("[496, alan_mathison_turing, terence_tao]",Y.value());
-*/}
+  EXPECT_EQ("alan_mathison_turing",X.value());
+}
 
 // Example: 
 // ?- [first, second, third] = [H|T].
 // H = first, T = [second, third].
 TEST(List, headAndTailMatching1) {
-  /*Atom f("first"), s("second"), t("third");
+Atom f("first"), s("second"), t("third");
   vector<Term *> args = {&f, &s, &t};
   List l(args);
 
   EXPECT_EQ("first", l.head()->symbol());
   EXPECT_EQ("[second, third]", l.tail()->value());
-*/}
+}
 
 // Example:
 // ?- [first, second, third] = [first, H|T].
 // H = second, T = [third].
 TEST(List, headAndTailMatching2) {
- /* Atom f("first"), s("second"), t("third");
+  Atom f("first"), s("second"), t("third");
   vector<Term *> args = {&f, &s, &t};
   List l(args);
 
   EXPECT_EQ(string("second"), l.tail()->head()->value());
-  EXPECT_EQ(string("[third]"), l.tail()->tail()->value());*/
+  EXPECT_EQ(string("[third]"), l.tail()->tail()->value());
 }
 
 // ?- [[first], second, third] = [H|T].
 // H = [first], T = [second, third].
 TEST(List, headAndTailMatching3) {
-
+  Atom f("first"), s("second"), t("third");
+  vector<Term *> vc = {&f};
+  List list(vc);
+  vector<Term *> vc1 = {&list, &s, &t};
+  List list1(vc1);
+  EXPECT_EQ(string("second"), list1.tail()->head()->value());
+  EXPECT_EQ(string("[third]"), list1.tail()->tail()->value());
 }
 
 // ?- [first, second, third] = [first, second, H|T].
 // H = third, T = [].
 TEST(List, headAndTailMatching4) {
-
+  Atom f("first"), s("second"), t("third");
+  vector<Term *> vc = {&f, &s, &t};
+  List l(vc);
+  EXPECT_EQ(string("third"), l.tail()->tail()->head()->value());
+  EXPECT_EQ(string("[]"), l.tail()->tail()->tail()->value());
 }
  
 // Given there is a empty list
 // When client still want to get the head of list
 // Then it should throw a string: "Accessing head in an empty list" as an exception.
 TEST (List, emptyExecptionOfHead) {
-
+  List list;
+  try{
+     list.head()->value();
+  }catch(string const & error) {
+     EXPECT_EQ("Accessing head in an empty list",error);
+  }
 }
 
 // Given there is a empty list
 // When client still want to get the head of list
 // Then it should throw a string: "Accessing tail in an empty list" as an exception.
 TEST (List, emptyExecptionOfTail) {
-
+  List list;
+  try{
+     list.tail()->value();
+  }catch(string const & error) {
+     EXPECT_EQ("Accessing tail in an empty list",error);
+  }
 }
-
-
 
 
 #endif

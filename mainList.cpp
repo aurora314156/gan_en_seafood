@@ -17,7 +17,7 @@ string List::symbol() const {
     }
     ret += "]";
     return  ret;
- }/*
+ }
 Term * List:: head() const{
     if (!_elements.empty()){;
         return _elements[0] ;
@@ -38,7 +38,7 @@ List *List:: tail() const{
         throw string("Accessing tail in an empty list");
       
     }
-};*/
+};
 bool List::match(Term & term){
   bool ret = false;
 
