@@ -1,7 +1,5 @@
 #include "atom.h"
 #include "variable.h"
-#include "struct.h"
-#include "list.h"
 #include <typeinfo>
 
 bool Term::match(Term & a){

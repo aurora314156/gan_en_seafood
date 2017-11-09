@@ -1,31 +1,34 @@
-all: hw4
+all: hw5
 
-hw4: main.o atom.o mainVariable.o mainStruct.o mainList.o
+hw5: main.o atom.o variable.o struct.o parser.o scanner.o global.o list.o
 ifeq (${OS}, Windows_NT)
-	g++ -o hw4 main.o atom.o mainVariable.o mainStruct.o mainList.o -lgtest
+	g++ -o hw5 main.o atom.o variable.o struct.o parser.o  scanner.o global.o list.o-lgtest
 else
-	g++ -o hw4 main.o atom.o mainVariable.o mainStruct.o mainList.o -lgtest -lpthread
+	g++ -o hw5 main.o atom.o variable.o struct.o parser.o  scanner.o global.o list.o -lgtest -lpthread
 endif
 
-main.o: main.cpp utList.h
-	g++ -std=gnu++0x -c  main.cpp
 
+main.o : main.cpp utParser.h
+	g++ -std=gnu++0x -c  main.cpp
 atom.o: atom.h atom.cpp
 	g++ -std=gnu++0x -c  atom.cpp
-
-mainVariable.o: mainVariable.cpp variable.h 
-	g++ -std=gnu++0x -c  mainVariable.cpp
-
-mainStruct.o: mainStruct.cpp struct.h  
-	g++ -std=gnu++0x -c  mainStruct.cpp
-
-mainList.o: mainList.cpp list.h 
-	g++ -std=gnu++0x -c  mainList.cpp
+variable.o: variable.cpp variable.h
+	g++ -std=gnu++0x -c  variable.cpp
+struct.o: struct.cpp struct.h
+	g++ -std=gnu++0x -c  struct.cpp
+parser.o: parser.cpp parser.h global.h
+	g++ -std=gnu++0x -c  parser.cpp
+scanner.o: scanner.cpp scanner.h global.h
+	g++ -std=gnu++0x -c  scanner.cpp
+global.o: global.cpp global.h
+	g++ -std=gnu++0x -c  global.cpp
+list.o:list.cpp list.h
+	g++ -std=gnu++0x -c  list.cpp
 
 
 clean:
 ifeq (${OS}, Windows_NT)
 	del *.o *.exe
 else
-	rm -f *.o hw4
+	rm -f *.o hw5
 endif
