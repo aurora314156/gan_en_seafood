@@ -2,7 +2,7 @@
 #### Fall, 2017
 #### Prof Y C Cheng
 #### Dept of Computer Science and Information Engineering
-#### Taipei Tech
+#### Taipei Tech1
 
 ### Introduction
 We will build a Prolog term matching program in this course. Functionally, the program is simple but non-trivial. Thus, we will have plenty of opportunities to encounter **design problems**. After analyzing the design problems, we will make use of appropriate design patterns to solve them. The patterns include _Composite_, _Interpreter_, _Builder_, _Iterator_, _Proxy_, _Visitor_, and so on. Along the way we will also pick up some useful domain knowledge of computing: symbolic matching, lexical analysis, and parsing.
