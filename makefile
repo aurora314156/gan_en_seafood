@@ -2,13 +2,13 @@ all: hw5
 
 hw5: main.o atom.o variable.o struct.o parser.o scanner.o global.o list.o
 ifeq (${OS}, Windows_NT)
-	g++ -o hw5 main.o atom.o variable.o struct.o parser.o  scanner.o global.o list.o-lgtest
+	g++ -o hw5 main.o atom.o variable.o struct.o parser.o scanner.o global.o list.o -lgtest
 else
-	g++ -o hw5 main.o atom.o variable.o struct.o parser.o  scanner.o global.o list.o -lgtest -lpthread
+	g++ -o hw5 main.o atom.o variable.o struct.o parser.o scanner.o global.o list.o -lgtest -lpthread
 endif
 
 
-main.o : main.cpp utParser.h
+main.o : main.cpp utParser.h utScanner.h
 	g++ -std=gnu++0x -c  main.cpp
 atom.o: atom.h atom.cpp
 	g++ -std=gnu++0x -c  atom.cpp
