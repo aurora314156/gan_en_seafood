@@ -404,7 +404,7 @@ TEST_F(ParserTest, DisjTwoMatchingSuccess) {
   EXPECT_EQ("1", terms[0]->value());
   EXPECT_EQ("2", terms[2]->value());
 }
-
+/*
 TEST_F(ParserTest, MatchingSuccess) {
   Scanner scanner("X=1; X=2, Y=s(s(X)).");
   Parser parser(scanner);
@@ -416,6 +416,6 @@ TEST_F(ParserTest, MatchingSuccess) {
   EXPECT_EQ("1", terms[0]->value());
   EXPECT_EQ("2", terms[2]->value());
   EXPECT_EQ("s(s(2))", terms[4]->value());
-}
+}*/
 
 #endif

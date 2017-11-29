@@ -11,18 +11,19 @@ public:
   Node(Operators op, Term *t, Node *l, Node *r):payload(op), term(t), left(l), right(r) {}
 
   bool evaluate(){
-    if(payload ==EQUALITY)
+    if(payload ==EQUALITY){
       return left->term->match(*(right->term));
+    }
     else if(payload ==COMMA)
     {
       bool _right = right->evaluate();
       bool _left = left->evaluate();
-      return (right&&left);
+      return (_right&&_left);
     }
     else if(payload==SEMICOLON){
       bool _right = right->evaluate();
       bool _left = left->evaluate();
-      return (right||left);
+      return (_right||_left);
     }
 
   }
