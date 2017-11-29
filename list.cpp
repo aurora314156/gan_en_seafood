@@ -1,68 +1,58 @@
-#include "list.h"
+#include "atom.h"
 #include "variable.h"
 #include <typeinfo>
+#include <iostream>
+#include <string>
+#include "list.h"
+using std::vector;
 
-#include <vector>
-
-string List::symbol() const {
-    string ret ="[";
-    
-    if(_elements.size() != 0){
-
-        int i = 0;
-
-      for(; i < _elements.size() - 1 ; ++i)
-        ret += _elements[i]-> symbol() + ", ";
-      ret += _elements[i]-> symbol();
+string List::symbol() const{
+    string ret ;
+    if(_elements.size()==0 ){
+      ret = "[]";
     }
-    ret += "]";
-    return  ret;
- }
-Term * List:: head() const{
-    if (!_elements.empty()){;
-        return _elements[0] ;
-      }else{
-          throw string("Accessing head in an empty list");
+    else{
+      ret  = "[";
+      std::vector<Term *>::const_iterator it = _elements.begin();
+      for( ; it != _elements.end()-1 ; ++it ){
+        ret += (*it)->symbol()+", ";
       }
-
-}
-List *List:: tail() const{
-
-    vector<Term *> tail;
-    if (!_elements.empty()){
-        for(int i =1; i<_elements.size();i++){
-            tail.push_back(_elements[i]);
+      ret += (*it)->symbol()+"]";
+    }
+    return ret;
+  }
+string List::value() const{
+    string ret ;
+    if(_elements.empty()){
+        ret = "[]";
+    }
+    else{
+        ret  = "[";
+        std::vector<Term *>::const_iterator it = _elements.begin();
+        for( ; it != _elements.end()-1 ; ++it ){
+        ret += (*it)->value()+", ";
         }
-        return new List(tail);
-    }else{
-        throw string("Accessing tail in an empty list");
-      
-    }
-};
-bool List::match(Term & term){
-  bool ret = false;
-
-  if(typeid(term) == typeid(Variable)){
-    ret = term.match(*this);
-  }
-  else if(_elements.size() != 0){
-
-    List *pt = dynamic_cast<List *>(&term);
-    
-    if(pt!=NULL){
-      ret = compare(pt);
-    }
-
-  }
-  return ret;
+        ret += (*it)->value()+"]";
 }
-bool List::compare(List *list){
+return ret;
+}
 
-  if(_elements.size() != list->_elements.size()) 
-    return false;
-  for(int i = 0; i < _elements.size(); i++)
-    if(!(_elements[i]->match(*(list->_elements[i])))) 
-      return false;
-  
-  return true;
+
+
+
+
+
+Term * List::head() const{
+    if(_elements.empty())
+        throw std::string("Accessing head in an empty list");
+
+    return _elements[0];
+}
+List * List::tail() const {
+    if(_elements.empty())
+        throw std::string("Accessing tail in an empty list");
+    vector<Term *> _clone_elements;
+    _clone_elements.assign(_elements.begin()+1, _elements.end());
+    List *ls= new List(_clone_elements) ;
+    return ls;
 }

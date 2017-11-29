@@ -2,12 +2,12 @@
 #define SCANNER_H
 
 #include "global.h"
+
+
 #include <string>
-#include <utility>
 #include <vector>
 using std::string;
 using std::vector;
-using std::pair;
 
 class Scanner {
 public:
