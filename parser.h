@@ -9,9 +9,7 @@ using std::string;
 #include "scanner.h"
 #include "struct.h"
 #include "list.h"
-#include "node.h"
-#include "number.h"
-#include "utParser.h"
+
 
 class Parser{
 public:
@@ -72,84 +70,6 @@ public:
   vector<Term *> & getTerms() {
     return _terms;
   }
-/*for visit tree node*/
-  void matchings(){
-    Term *term = createTerm();
-    if(term!=nullptr)
-    {
-      if(isComma==1)
-      {
-        Term *getTerm = find(term);
-        if(getTerm!=nullptr)
-        term->match(*getTerm);
-      }
-      _terms.push_back(term);
-      while((_currentToken = _scanner.nextToken()) == ',' ||  _currentToken=='='|| _currentToken == ';') {
-        if (_currentToken == '=') {
-          Node * left = new Node(TERM, _terms.back(), nullptr, nullptr);
-          _terms.push_back(createTerm());
-          Node * right = new Node(TERM, _terms.back(), nullptr, nullptr);
-          Node * root = new Node(EQUALITY, nullptr, left, right);
-          _treeNode = root;
-        }
-        else if(_currentToken == ','){
-          isComma = 1;
-          Node * left = _treeNode;
-          matchings();
-          Node * root = new Node(COMMA, nullptr, left, expressionTree());
-          _treeNode = root;
-        }
-        else if(_currentToken == ';'){
-          isComma = 0;
-          Node * nodes = _treeNode;
-          treeSize = _terms.size();
-          matchings();
-          Node * root = new Node(SEMICOLON,nullptr,nodes,expressionTree());
-          _treeNode = root;
-        }
-      }
-    }
-  }
-
-  Term * find(Term * term){
-
-    for(int index = treeSize; index < _terms.size() ; ++index){
-     
-      if(_terms[index]->symbol() == term->symbol()) {
-        treeSize =  0;
-        return _terms[index];
-      }
-      
-      Struct * s = dynamic_cast<Struct*>(_terms[index]);
-      
-      if(s) 
-        return findstruct(s,term);
-      
-    }
-
-    return nullptr;
-  }
-
-  Term * findstruct(Struct *s,Term * term){
-    
-    for(int i = treeSize; i < s->arity() ; i++){
-      if(s->args(i)->symbol() == term->symbol()) {
-        treeSize =  0;
-        return s->args(i);
-      }
-      Struct * ss = dynamic_cast<Struct*>(s->args(i));
-      if(ss) {
-        return findstruct(ss,term);
-      }
-    }
-
-  }
-
-  Node * expressionTree(){
-    return _treeNode;
-  }
-
-  
 
 private:
   FRIEND_TEST(ParserTest, createArgs);
@@ -169,12 +89,7 @@ private:
   }
 
   vector<Term *> _terms;
-  vector<Term *> _temp;
-  Node * _treeNode;
   Scanner _scanner;
   int _currentToken;
-  int isComma = 0;
-  int treeSize = 0;
-
 };
 #endif

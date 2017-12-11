@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "list.h"
+#include "iterator.h"
 using std::vector;
 
 string List::symbol() const{
@@ -37,11 +38,54 @@ string List::value() const{
 return ret;
 }
 
+Iterator<Term*> * List::createIterator()
+{
+  return new ListIterator(this);
+}
 
+Iterator<Term*> * List::createBFSIterator(){
+  return new BFSIterator(this);
+}
 
+Iterator<Term*> * List::createDFSIterator(){
+  return new DFSIterator(this);
+}
 
-
-
+bool List::match(Term & term) {
+    if(typeid(term) ==  typeid(List)){
+        bool ret =true;
+        List * ptrls = dynamic_cast<List*>(&term);
+        if( _elements.size() != ptrls->_elements.size() ){
+        ret = false;
+        }
+        else{
+            for(int i = 0 ; i < _elements.size() ;i++ ){
+                ret = _elements[i]->match(*(ptrls->_elements[i])) ;
+                if(ret == false)
+                    return ret;
+            }
+        }
+        return ret;
+    }
+    else if(typeid(term) == typeid(Variable)){
+        bool ret =true;
+        for(int i = 0 ; i < _elements.size() ;i++ ){
+        if(_elements[i]->symbol() ==  term.symbol()){
+            if( _elements[i]->symbol() == term.symbol() ){
+                ret= false;
+                return ret;
+            }
+        ret = _elements[i]->match(term) ;
+        }
+        if(ret == false)
+                return ret;
+        }
+        return ret;
+    }
+    else{
+        return value () == term.value();
+    }
+}
 Term * List::head() const{
     if(_elements.empty())
         throw std::string("Accessing head in an empty list");
