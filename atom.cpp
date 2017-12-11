@@ -1,5 +1,5 @@
 #include "atom.h"
-#include  "variable.h"
+#include "variable.h"
 #include "iterator.h"
 #include <typeinfo>
 

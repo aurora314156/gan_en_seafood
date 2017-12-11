@@ -6,6 +6,8 @@
 #include "atom.h"
 #include "list.h"
 #include "iterator.h"
+#include "number.h"
+
 TEST(iterator, StructIterator) {
     Number one(1);
     Number two(2);
