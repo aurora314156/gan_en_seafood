@@ -1,13 +1,7 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
-// #include "struct.h"
-// #include "variable.h"
-// #include "atom.h"
-// #include "list.h"
-// #include "parser.h"
-// #include "scanner.h"
-// #include "iterator.h"
+
 
 
 TEST(Shell, exception_OnlyVariable) {

@@ -118,7 +118,7 @@ private:
   int _tokenValue;
 
 private:
-  // case-based populating symtable and setting _tokenValue
+  
   template <int TokenType>
   void processToken(string const & s) {
     int val = -1;
@@ -126,7 +126,7 @@ private:
         _tokenValue = val;
     } else {
       symtable.push_back(pair<string, int>(s,TokenType));
-       _tokenValue = symtable.size()-1; // index to symtable
+       _tokenValue = symtable.size()-1;
     }
   }
 };
