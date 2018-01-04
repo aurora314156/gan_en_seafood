@@ -115,101 +115,101 @@ TEST(Shell, conjunctionMatching_diffExp) {
   }
 }
 
-// TEST(Shell, conjunctionMatching_sameExp) {
-//   Scanner s("X=1, X=1.");
-//   Parser p(s);
-//   try {
-//     p.buildExpression();
-//     string result = p.result();
-//     ASSERT_EQ("X = 1.", result);
-//   } catch (std::string &msg) {
-//     FAIL() << msg;
-//   }
-// }
+TEST(Shell, conjunctionMatching_sameExp) {
+  Scanner s("X=1, X=1.");
+  Parser p(s);
+  try {
+    p.buildExpression();
+    string result = p.result();
+    ASSERT_EQ("X = 1.", result);
+  } catch (std::string &msg) {
+    FAIL() << msg;
+  }
+}
 
-// TEST(Shell, conjunctionMatching_true) {
-//   Scanner s("X=X, X=X.");
-//   Parser p(s);
-//   try {
-//     p.buildExpression();    
-//     string result = p.result();
-//     ASSERT_EQ("true.", result);
-//   } catch (std::string &msg) {
-//     FAIL() << msg;
-//   }
-// }
+TEST(Shell, conjunctionMatching_true) {
+  Scanner s("X=X, X=X.");
+  Parser p(s);
+  try {
+    p.buildExpression();    
+    string result = p.result();
+    ASSERT_EQ("true.", result);
+  } catch (std::string &msg) {
+    FAIL() << msg;
+  }
+}
 
-// TEST(Shell, conjunctionMatching_trueAndExp) {
-//   Scanner s("X=X, Y=1.");
-//   Parser p(s);
-//   try {
-//     p.buildExpression();
-//     string result = p.result();  
-//     ASSERT_EQ("Y = 1.", result);
-//   } catch (std::string &msg) {
-//     FAIL() << msg;
-//   }
-// }
+TEST(Shell, conjunctionMatching_trueAndExp) {
+  Scanner s("X=X, Y=1.");
+  Parser p(s);
+  try {
+    p.buildExpression();
+    string result = p.result();  
+    ASSERT_EQ("Y = 1.", result);
+  } catch (std::string &msg) {
+    FAIL() << msg;
+  }
+}
 
-// TEST(Shell, conjunctionMatching_expAndtrue) {
-//   Scanner s("Y=1, X=X.");
-//   Parser p(s);
-//   try {
-//     p.buildExpression();    
-//     string result = p.result();
-//     ASSERT_EQ("Y = 1.", result);
-//   } catch (std::string &msg) {
-//     FAIL() << msg;
-//   }
-// }
+TEST(Shell, conjunctionMatching_expAndtrue) {
+  Scanner s("Y=1, X=X.");
+  Parser p(s);
+  try {
+    p.buildExpression();    
+    string result = p.result();
+    ASSERT_EQ("Y = 1.", result);
+  } catch (std::string &msg) {
+    FAIL() << msg;
+  }
+}
 
-// TEST(Shell, conjunctionMatching_trueAndfalse) {
-//   Scanner s("X=X, 1=2.");
-//   Parser p(s);
-//   try {
-//     p.buildExpression();     
-//     string result = p.result();
-//     ASSERT_EQ("false.", result);
-//   } catch (std::string &msg) {
-//     FAIL() << msg;
-//   }
-// }
+TEST(Shell, conjunctionMatching_trueAndfalse) {
+  Scanner s("X=X, 1=2.");
+  Parser p(s);
+  try {
+    p.buildExpression();     
+    string result = p.result();
+    ASSERT_EQ("false.", result);
+  } catch (std::string &msg) {
+    FAIL() << msg;
+  }
+}
 
-// TEST(Shell, conjunctionMatching_falseAndtrue) {
-//   Scanner s("3=2, X=X.");
-//   Parser p(s);
-//   try {
-//     p.buildExpression();    
-//     string result = p.result();
-//     ASSERT_EQ("false.", result);
-//   } catch (std::string &msg) {
-//     FAIL() << msg;
-//   }
-// }
+TEST(Shell, conjunctionMatching_falseAndtrue) {
+  Scanner s("3=2, X=X.");
+  Parser p(s);
+  try {
+    p.buildExpression();    
+    string result = p.result();
+    ASSERT_EQ("false.", result);
+  } catch (std::string &msg) {
+    FAIL() << msg;
+  }
+}
 
-// TEST(Shell, conjunctionMatching_falseAndfalse) {
-//   Scanner s("X=1, X=2, 1=2.");
-//   Parser p(s);
-//   try {
-//     p.buildExpression();
-//     string result = p.result();
-//     ASSERT_EQ("false.", result);
-//   } catch (std::string &msg) { 
-//     FAIL() << msg;
-//   }
-// }
+TEST(Shell, conjunctionMatching_falseAndfalse) {
+  Scanner s("X=1, X=2, 1=2.");
+  Parser p(s);
+  try {
+    p.buildExpression();
+    string result = p.result();
+    ASSERT_EQ("false.", result);
+  } catch (std::string &msg) { 
+    FAIL() << msg;
+  }
+}
 
-// TEST(Shell, conjunctionMatching_duplicateExp) {
-//   Scanner s("Y=1, X=2, X=2.");
-//   Parser p(s);
-//   try {
-//     p.buildExpression();
-//     string result = p.result();
-//     ASSERT_EQ("Y = 1, X = 2.", result);
-//   } catch (std::string &msg) { 
-//     FAIL() << msg;
-//   }
-// }
+TEST(Shell, conjunctionMatching_duplicateExp) {
+  Scanner s("Y=1, X=2, X=2.");
+  Parser p(s);
+  try {
+    p.buildExpression();
+    string result = p.result();
+    ASSERT_EQ("Y = 1, X = 2.", result);
+  } catch (std::string &msg) { 
+    FAIL() << msg;
+  }
+}
 
 // TEST(Shell, disjunctionMatching1) {
 //   Scanner s("X=1; X=2.");
